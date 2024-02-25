@@ -5,18 +5,18 @@ PluginEditor::PluginEditor (PluginProcessor& p)
 {
     juce::ignoreUnused (processorRef);
 
-    addAndMakeVisible (inspectButton);
-
-    // this chunk of code instantiates and opens the melatonin inspector
-    inspectButton.onClick = [&] {
-        if (!inspector)
-        {
-            inspector = std::make_unique<melatonin::Inspector> (*this);
-            inspector->onClose = [this]() { inspector.reset(); };
-        }
-
-        inspector->setVisible (true);
-    };
+    // addAndMakeVisible (inspectButton);
+    //
+    // // this chunk of code instantiates and opens the melatonin inspector
+    // inspectButton.onClick = [&] {
+    //     if (!inspector)
+    //     {
+    //         inspector = std::make_unique<melatonin::Inspector> (*this);
+    //         inspector->onClose = [this]() { inspector.reset(); };
+    //     }
+    //
+    //     inspector->setVisible (true);
+    // };
 
     // Make sure that before the constructor has finished, you've set the
     // editor's size to whatever you need it to be.
@@ -44,5 +44,5 @@ void PluginEditor::resized()
     // layout the positions of your child components here
     auto area = getLocalBounds();
     area.removeFromBottom(50);
-    inspectButton.setBounds (getLocalBounds().withSizeKeepingCentre(100, 50));
+    // inspectButton.setBounds (getLocalBounds().withSizeKeepingCentre(100, 50));
 }

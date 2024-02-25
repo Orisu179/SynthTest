@@ -48,6 +48,9 @@ add_subdirectory(JUCE)
 # Add any other modules you want modules here, before the juce_add_plugin call
 # juce_add_module(modules/my_module)
 
+# This adds the PluginGUIMagic module
+add_subdirectory (modules/foleys_gui_magic)
+
 # This adds the melatonin inspector module
 add_subdirectory (modules/melatonin_inspector)
 
@@ -98,9 +101,6 @@ target_sources(SharedCode INTERFACE ${SourceFiles})
 # Adds a BinaryData target for embedding assets into the binary
 include(Assets)
 
-# MacOS only: Cleans up folder and target organization on Xcode.
-include(XcodePrettify)
-
 # This is where you can set preprocessor definitions for JUCE and your plugin
 target_compile_definitions(SharedCode
     INTERFACE
@@ -118,7 +118,7 @@ target_compile_definitions(SharedCode
     VERSION="${CURRENT_VERSION}"
 
     # JucePlugin_Name is for some reason doesn't use the nicer PRODUCT_NAME
-    PRODUCT_NAME_WITHOUT_VERSION="Pamplejuce"
+    PRODUCT_NAME_WITHOUT_VERSION="SimpleSynth"
 )
 
 # Link to any other modules you added (with juce_add_module) here!
@@ -130,6 +130,7 @@ target_link_libraries(SharedCode
     INTERFACE
     Assets
     melatonin_inspector
+    foleys_gui_magic
     juce_audio_utils
     juce_audio_processors
     juce_dsp
